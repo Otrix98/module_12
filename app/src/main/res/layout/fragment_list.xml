@@ -7,6 +7,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:text="@string/text"
+        android:visibility="visible"
+        android:layout_marginTop="200dp"
         android:id="@+id/textEmpty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
