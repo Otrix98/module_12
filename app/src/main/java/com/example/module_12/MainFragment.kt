@@ -7,17 +7,17 @@ import kotlinx.android.synthetic.main.fragment_main.*
 class MainFragment: Fragment (R.layout.fragment_main) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        button1.setOnClickListener {
-            (activity as MainActivity).showFoodFragment()
-        }
-        button2.setOnClickListener {
-            (activity as MainActivity).showLinearLayoutFragment()
-        }
-        button3.setOnClickListener {
-            (activity as MainActivity).showGridFragment()
-        }
-        button4.setOnClickListener {
-            (activity as MainActivity).showStuggeredFragment()
-        }
+//        button1.setOnClickListener {
+//            (activity as MainActivity).showFoodFragment()
+//        }
+//        button2.setOnClickListener {
+//            (activity as MainActivity).showLinearLayoutFragment()
+//        }
+//        button3.setOnClickListener {
+//            (activity as MainActivity).showGridFragment()
+//        }
+//        button4.setOnClickListener {
+//            (activity as MainActivity).showStuggeredFragment()
+//        }
     }
 }

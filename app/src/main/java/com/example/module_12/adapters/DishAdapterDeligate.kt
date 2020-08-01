@@ -8,7 +8,7 @@ import com.example.module_12.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import kotlinx.android.synthetic.main.item_product.*
 
-class DishAdapterDeligate( private val onItemClicked: (position: Int ) -> Unit): AbsListItemAdapterDelegate<Food.Dish, Food, DishAdapterDeligate.DishHolder>() {
+class DishAdapterDeligate( private val onItemClicked: (id: Long) -> Unit): AbsListItemAdapterDelegate<Food.Dish, Food, DishAdapterDeligate.DishHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): DishHolder {
         return  DishHolder(
@@ -26,11 +26,11 @@ class DishAdapterDeligate( private val onItemClicked: (position: Int ) -> Unit):
     }
     class DishHolder(
         view: View,
-        onItemClicked: (position: Int) -> Unit
+        onItemClicked: (id: Long) -> Unit
     ): BasePersonHolder(view, onItemClicked) {
 
         fun bind(food: Food.Dish) {
-            bindMainInfo(food.name, food.avatarLink, food.weight )
+            bindMainInfo(food.id, food.name, food.avatarLink, food.weight )
             structureTextView.text = "Состав: ${food.structure}"
         }
     }

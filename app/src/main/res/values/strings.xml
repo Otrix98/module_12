@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">module_12</string>
     <string name="text">Список пуст</string>
+    <string name="detailText">Детальная информацтя по пользователю с id:</string>
 </resources>

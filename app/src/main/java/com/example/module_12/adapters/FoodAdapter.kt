@@ -1,26 +1,12 @@
 package com.example.module_12.adapters
 
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.module_12.Food
-import com.example.module_12.ListFragment
-import com.example.module_12.R
-import com.example.module_12.inflate
-import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_product.avatarImageView
-import kotlinx.android.synthetic.main.item_product.nameTextView
-import kotlinx.android.synthetic.main.item_product.structureTextView
 import kotlinx.android.synthetic.main.item_product.weightTextView
 
 class FoodAdapter(
-    private val onItemClicked: (position: Int ) -> Unit
+    private val onItemClicked: (id: Long) -> Unit
 ): AsyncListDifferDelegationAdapter<Food>(FoodDiffUtilCallback()) {
 
 

@@ -9,7 +9,7 @@ import com.example.module_12.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import kotlinx.android.synthetic.main.item_product.*
 
-class ProductAdapterDeligate( private val onItemClicked: (position: Int ) -> Unit): AbsListItemAdapterDelegate<Food.Product, Food, ProductAdapterDeligate.ProductHolder>() {
+class ProductAdapterDeligate( private val onItemClicked: (id: Long ) -> Unit): AbsListItemAdapterDelegate<Food.Product, Food, ProductAdapterDeligate.ProductHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup): ProductHolder {
         return  ProductHolder(
             parent.inflate(R.layout.item_product),
@@ -31,14 +31,14 @@ class ProductAdapterDeligate( private val onItemClicked: (position: Int ) -> Uni
 
     class ProductHolder(
         view: View,
-        onItemClicked: (position: Int) -> Unit
+        onItemClicked: (id: Long) -> Unit
     ): BasePersonHolder(view, onItemClicked) {
         init {
             structureTextView.isVisible = false
         }
 
         fun bind(food: Food.Product) {
-            bindMainInfo(food.name, food.avatarLink, food.weight )
+            bindMainInfo(food.id, food.name, food.avatarLink, food.weight )
         }
 
     }
