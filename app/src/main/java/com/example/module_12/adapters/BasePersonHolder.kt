@@ -3,6 +3,7 @@ package com.example.module_12.adapters
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.module_12.FoodRepository
 import com.example.module_12.ListFragment
 import com.example.module_12.R
 import kotlinx.android.extensions.LayoutContainer
@@ -31,7 +32,7 @@ abstract class BasePersonHolder (
             weight: String
         ) {
             containerView.setOnLongClickListener {
-                ListFragment().deleteFood(id.toInt())
+                (id.toInt())
                 true
             }
             containerView.setOnClickListener {
