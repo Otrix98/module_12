@@ -30,11 +30,6 @@ private val foodListViewModel: FoodListViewModel by viewModels()
         foodAdapter = null
 
     }
-    //        id ->
-//
-//            val action = ListFragmentDirections.actionListFragmentToDetailsFragment(id)
-//
-//            findNavController().navigate(action)
     private fun initList() {
         foodAdapter = FoodAdapter(object : FoodAdapter.OnItemClicked{
             override fun onClick(item: Food) {
