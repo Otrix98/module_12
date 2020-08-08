@@ -30,14 +30,25 @@ private val foodListViewModel: FoodListViewModel by viewModels()
         foodAdapter = null
 
     }
-
+    //        id ->
+//
+//            val action = ListFragmentDirections.actionListFragmentToDetailsFragment(id)
+//
+//            findNavController().navigate(action)
     private fun initList() {
-        foodAdapter = FoodAdapter { id ->
+        foodAdapter = FoodAdapter(object : FoodAdapter.OnItemClicked{
+            override fun onClick(item: Food) {
 
-            val action = ListFragmentDirections.actionListFragmentToDetailsFragment(id)
+            val action = ListFragmentDirections.actionListFragmentToDetailsFragment(id.toLong())
 
             findNavController().navigate(action)
-        }
+            }
+
+            override fun onLongClick(position: Int) {
+                deleteFood(position)
+            }
+        })
+
         with(foodList) {
             adapter = foodAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -46,7 +57,7 @@ private val foodListViewModel: FoodListViewModel by viewModels()
         }
     }
 
-     fun deeteFood(id: Int) {
+     fun deleteFood (id: Int) {
         foodListViewModel.deleteFood(id)
         observeViewModelState()
     }
@@ -63,7 +74,7 @@ private val foodListViewModel: FoodListViewModel by viewModels()
 
         foodListViewModel.showToast
             .observe(viewLifecycleOwner) {
-                Toast.makeText(requireContext(), "Элемент добавлен", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Элемент удалён", Toast.LENGTH_SHORT).show()
             }
     }
 

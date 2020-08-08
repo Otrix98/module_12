@@ -6,13 +6,13 @@ import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 import kotlinx.android.synthetic.main.item_product.weightTextView
 
 class FoodAdapter(
-    private val onItemClicked: (id: Long) -> Unit
-): AsyncListDifferDelegationAdapter<Food>(FoodDiffUtilCallback()) {
+    private val clickListener: OnItemClicked):
+    AsyncListDifferDelegationAdapter<Food>(FoodDiffUtilCallback()) {
 
 
     init {
-        delegatesManager.addDelegate(DishAdapterDeligate(onItemClicked))
-            .addDelegate(ProductAdapterDeligate(onItemClicked))
+        delegatesManager.addDelegate(DishAdapterDeligate(clickListener))
+            .addDelegate(ProductAdapterDeligate(clickListener))
     }
     class FoodDiffUtilCallback: DiffUtil.ItemCallback<Food>() {
         override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean {
@@ -27,6 +27,11 @@ class FoodAdapter(
             return oldItem == newItem
         }
 
+    }
+
+    interface OnItemClicked {
+        fun onClick(item:Food)
+        fun onLongClick(position: Int)
     }
 
 

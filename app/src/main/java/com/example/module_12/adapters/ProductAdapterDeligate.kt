@@ -9,11 +9,11 @@ import com.example.module_12.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import kotlinx.android.synthetic.main.item_product.*
 
-class ProductAdapterDeligate( private val onItemClicked: (id: Long ) -> Unit): AbsListItemAdapterDelegate<Food.Product, Food, ProductAdapterDeligate.ProductHolder>() {
+class ProductAdapterDeligate( private val clickListener: FoodAdapter.OnItemClicked): AbsListItemAdapterDelegate<Food.Product, Food, ProductAdapterDeligate.ProductHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup): ProductHolder {
         return  ProductHolder(
             parent.inflate(R.layout.item_product),
-            onItemClicked
+            clickListener
         )
     }
 
@@ -26,19 +26,21 @@ class ProductAdapterDeligate( private val onItemClicked: (id: Long ) -> Unit): A
         holder: ProductHolder,
         payloads: MutableList<Any>
     ) {
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
     class ProductHolder(
         view: View,
-        onItemClicked: (id: Long) -> Unit
-    ): BasePersonHolder(view, onItemClicked) {
+        onItemClicked:  FoodAdapter.OnItemClicked
+    ): BaseFoodHolder(view, onItemClicked) {
         init {
             structureTextView.isVisible = false
         }
 
-        fun bind(food: Food.Product) {
+        fun bind(food: Food.Product, clickListener: FoodAdapter.OnItemClicked) {
             bindMainInfo(food.id, food.name, food.avatarLink, food.weight )
+            itemView.setOnClickListener { clickListener.onClick(food) }
+            itemView.setOnLongClickListener { clickListener.onLongClick(adapterPosition);true}
         }
 
     }

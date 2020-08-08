@@ -8,12 +8,12 @@ import com.example.module_12.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import kotlinx.android.synthetic.main.item_product.*
 
-class DishAdapterDeligate( private val onItemClicked: (id: Long) -> Unit): AbsListItemAdapterDelegate<Food.Dish, Food, DishAdapterDeligate.DishHolder>() {
+class DishAdapterDeligate( private val clickListener: FoodAdapter.OnItemClicked): AbsListItemAdapterDelegate<Food.Dish, Food, DishAdapterDeligate.DishHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): DishHolder {
         return  DishHolder(
             parent.inflate(R.layout.item_dish),
-            onItemClicked
+            clickListener
         )
     }
 
@@ -22,16 +22,18 @@ class DishAdapterDeligate( private val onItemClicked: (id: Long) -> Unit): AbsLi
     }
 
     override fun onBindViewHolder(item: Food.Dish, holder: DishHolder, payloads: MutableList<Any>) {
-       holder.bind(item)
+       holder.bind(item, clickListener)
     }
     class DishHolder(
         view: View,
-        onItemClicked: (id: Long) -> Unit
-    ): BasePersonHolder(view, onItemClicked) {
+        onItemClicked: FoodAdapter.OnItemClicked
+    ): BaseFoodHolder(view, onItemClicked) {
 
-        fun bind(food: Food.Dish) {
+        fun bind(food: Food.Dish, clickListener: FoodAdapter.OnItemClicked) {
             bindMainInfo(food.id, food.name, food.avatarLink, food.weight )
             structureTextView.text = "Состав: ${food.structure}"
+            itemView.setOnClickListener { clickListener.onClick(food) }
+            itemView.setOnLongClickListener { clickListener.onLongClick(adapterPosition);true}
         }
     }
 

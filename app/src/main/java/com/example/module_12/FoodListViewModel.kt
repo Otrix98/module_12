@@ -29,8 +29,10 @@ class FoodListViewModel: ViewModel() {
         foodLiveData.postValue(updatedList)
 }
     fun deleteFood( id: Int) {
+        showToastLiveData.postValue(Unit)
         foodLiveData.postValue(
             repository.deleteFood(foodLiveData.value.orEmpty(), id)
+
         )
     }
 }

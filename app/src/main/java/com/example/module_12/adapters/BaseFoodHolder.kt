@@ -3,16 +3,13 @@ package com.example.module_12.adapters
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.module_12.FoodRepository
-import com.example.module_12.ListFragment
 import com.example.module_12.R
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.item_dish.*
 
-abstract class BasePersonHolder (
+abstract class BaseFoodHolder(
     override val containerView: View,
-    private val onItemClicked: (id: Long) -> Unit
+    private val onItemClicked: FoodAdapter.OnItemClicked
     ): RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         private var currentId: Long? = null
@@ -21,9 +18,10 @@ abstract class BasePersonHolder (
 
         init {
             containerView.setOnClickListener {
-                onItemClicked(itemId)
+                onItemClicked
             }
         }
+
 
         protected fun bindMainInfo(
             id: Long,
@@ -36,7 +34,7 @@ abstract class BasePersonHolder (
                 true
             }
             containerView.setOnClickListener {
-                currentId?.let { onItemClicked(it) }
+                currentId?.let { onItemClicked }
             }
             currentId = id
             nameTextView.text = name
